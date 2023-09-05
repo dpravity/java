@@ -1,0 +1,23 @@
+
+`	java:S112;"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ
+`	java:S112D"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ
+`	java:S112M"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ
+2
+java:S16435"Use a StringBuilder instead.(ûºÆÔ
+7
+java:S16436"Use a StringBuilder instead.(öÏìÀúÿÿÿÿ
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ÊÒ…É
+H
+java:S1135&"2Complete the task associated to this TODO comment.(É÷µÀ
+S	java:S106,"9Replace this use of System.out or System.err by a logger.(„Ø³¨üÿÿÿÿ
+N	java:S106-"9Replace this use of System.out or System.err by a logger.(Æ›»‰
+N	java:S106."9Replace this use of System.out or System.err by a logger.(¿ÎÍ‰
+N	java:S1061"9Replace this use of System.out or System.err by a logger.(…Ù¾–
+M	java:S1068"9Replace this use of System.out or System.err by a logger.(Æ¬¬N
+S	java:S1069"9Replace this use of System.out or System.err by a logger.(ÐŒ‚‡ýÿÿÿÿ
+S	java:S106@"9Replace this use of System.out or System.err by a logger.(„Ø³¨üÿÿÿÿ
+N	java:S106A"9Replace this use of System.out or System.err by a logger.(Æ›»‰
+S	java:S106B"9Replace this use of System.out or System.err by a logger.(ÐŒ‚‡ýÿÿÿÿ
+N	java:S106J"9Replace this use of System.out or System.err by a logger.(Õ¥ª‘
+M
+java:S1128"2Remove this unused import 'java.net.Inet6Address'.(×êÉéüÿÿÿÿ

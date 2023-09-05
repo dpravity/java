@@ -1,0 +1,14 @@
+
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ñÉ…·ÿÿÿÿÿ
+u
+java:S1149"_Replace the synchronized class "StringBuffer" by an unsynchronized one such as "StringBuilder".(þ¤­Ò
+V
+java:S1854"9Remove this useless assignment to local variable "list2".(ŸþÌ—8¬…Ð·ë0
+U
+java:S1854":Remove this useless assignment to local variable "result".(…ôÓ¡þÿÿÿÿ
+F
+java:S1481"+Remove this unused "result" local variable.(…ôÓ¡þÿÿÿÿ
+h
+java:S6204"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(ª™¨¹
+G
+java:S1481"*Remove this unused "list2" local variable.(ŸþÌ—8¯…Ð·ë0

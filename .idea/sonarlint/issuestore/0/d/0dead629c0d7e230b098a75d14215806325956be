@@ -1,0 +1,18 @@
+
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ÊÒ…É
+S	java:S106"9Replace this use of System.out or System.err by a logger.(›Ô¤Âøÿÿÿÿ
+V	java:S125"<This block of commented-out lines of code should be removed.(æÐÁ‰üÿÿÿÿ
+N	java:S106"9Replace this use of System.out or System.err by a logger.(È§å
+S	java:S106"9Replace this use of System.out or System.err by a logger.(›Ó™‘þÿÿÿÿ
+U	java:S106"9Replace this use of System.out or System.err by a logger.(àúùé8˜ÛäÞë0
+Z	java:S106"9Replace this use of System.out or System.err by a logger.(ôÊÿÿýÿÿÿÿ8‘‘åÞë0
+Z	java:S106 "9Replace this use of System.out or System.err by a logger.(ØÞ—ˆúÿÿÿÿ8Þ‰æÞë0
+Z	java:S106!"9Replace this use of System.out or System.err by a logger.(ñ–é§ùÿÿÿÿ8Þ‰æÞë0
+U	java:S106""9Replace this use of System.out or System.err by a logger.(Ðè¹8ÜÐæÞë0
+U	java:S106#"9Replace this use of System.out or System.err by a logger.(õó•Ü8É‰çÞë0
+U	java:S106$"9Replace this use of System.out or System.err by a logger.(å´’†8ÍàçÞë0
+Z	java:S106%"9Replace this use of System.out or System.err by a logger.(§µÅ€üÿÿÿÿ8å¼èÞë0
+Z	java:S106&"9Replace this use of System.out or System.err by a logger.(ˆÿ÷ýÿÿÿÿ8–ôèÞë0
+Z	java:S106'"9Replace this use of System.out or System.err by a logger.(Ü ªƒùÿÿÿÿ8ÊêÞë0
+X
+java:S1128";Remove this unused import 'java.net.MalformedURLException'.(ªËÞˆ8€ÉçÞë0
