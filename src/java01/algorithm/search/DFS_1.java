@@ -22,13 +22,15 @@ public class DFS_1 {
         return rule[index];
     }
     private int[] solution(int[] answers){
-        int[] corrects = new int[3];
+        int[] corrects = new int[RULE.length];
         int max = 0;
 
+        // 정답 확인
         for(int problem = 0; problem < answers.length; problem++){
             int answer = answers[problem];
 
             for (int person = 0; person < RULE.length; person++){
+                // 각 사람이 선택한 답
                 int picked = getPicked(person, problem);
                 if (answer == picked){
                     if(++corrects[person] > max){

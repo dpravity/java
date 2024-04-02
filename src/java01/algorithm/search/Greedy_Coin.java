@@ -11,18 +11,18 @@ public class Greedy_Coin {
         int change = 1260;
         int count = 0;
 
-        int[] coins = {1, 5, 10, 25}; // 사용 가능한 동전
-        int amount = 63; // 거슬러 줘야 할 금액
-//        solution1(coins, amount);
-        solution1(coinTypes, change);
+//        int[] coins = {1, 5, 10, 25}; // 사용 가능한 동전
+//        int amount = 63; // 거슬러 줘야 할 금액
+        count = solution1(coinTypes, change);
         System.out.println("=====================================");
 
-        count = solution2(coinTypes, change);
-        System.out.println(count);
+//        count = solution2(coinTypes, change);
+//        System.out.println(count);
 
     }
     public static int solution1(int[] coins, int amount) {
         Arrays.sort(coins); // 동전을 오름차순으로 정렬
+        Arrays.stream(coins).forEach(System.out::println);
 
         int count = 0; // 사용된 동전의 총 개수
         for (int i = coins.length - 1; i >= 0; i--) { // 가장 큰 단위의 동전부터 시작
