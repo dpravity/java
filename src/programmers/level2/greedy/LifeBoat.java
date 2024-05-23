@@ -33,6 +33,7 @@ public class LifeBoat {
         int limit = 100;
         System.out.println(solution1(people, limit));
 //        System.out.println(solution2(people, limit));
+        System.out.println(solution3(people, limit));
     }
     public static int solution1(int[] people, int limit) {
         int answer = 0;
@@ -61,5 +62,23 @@ public class LifeBoat {
         return people.length - i;
     }
 
+    //#region - practice
+    public static int solution3(int[] people, int limit) {
+        int answer = 0;
+        Arrays.sort(people);
+
+        int from = 0;
+        for(int to = people.length - 1; to > from; to--){
+            if(people[from] + people[to] <= limit){
+                answer++;
+                from++;
+            }else{
+                answer++;
+            }
+        }
+
+        return answer;
+    }
+    //#endregion - practice
 
 }

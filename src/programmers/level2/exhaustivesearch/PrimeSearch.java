@@ -31,8 +31,10 @@ import java.util.HashSet;
  */
 public class PrimeSearch {
     public static void main(String[] args) {
-        String numbers = "011";
+        String numbers = "123514";
         System.out.println(solution1(numbers));
+        System.out.println(solution2(numbers));
+        System.out.println(solution3(numbers));
     }
     public static int solution1(String numbers) {
         int answer = 0;
@@ -60,7 +62,6 @@ public class PrimeSearch {
                     set.add(Integer.parseInt(temp));
                     dfs(numbers, temp, depth + 1, visited, set);
                     visited[i] = false;
-
                 }
             }
         }
@@ -104,4 +105,47 @@ public class PrimeSearch {
             permutation(prefix + str.charAt(i), str.substring(0, i) + str.substring(i + 1, n), set);
         }
     }
+
+    //#region - practice
+    public static int solution3(String numbers) {
+        int answer = 0;
+        HashSet<Integer> set = new HashSet<>();
+        boolean[] visited = new boolean[numbers.length()];
+        dfs3(numbers, "", visited, 0, set);
+
+        for(Integer i : set){
+            if(isPrime3(i)){
+                answer++;
+            }
+        }
+        return answer;
+    }
+    private static void dfs3(String numbers, String prefix, boolean[] visited, int depth, HashSet<Integer> set){
+        if(depth >= numbers.length()){
+            return;
+        }else{
+            for(int i = 0; i < numbers.length(); i++){
+                if(!visited[i]){
+                    visited[i] = true;
+                    String str = prefix + numbers.charAt(i);
+                    set.add(Integer.parseInt(str));
+                    dfs3(numbers, str, visited, depth + 1, set);
+                    visited[i] = false;
+                }
+            }
+        }
+    }
+    private static boolean isPrime3(int n){
+        if(n < 2){
+            return false;
+        }else{
+            for(int i = 2; i <= (int) Math.sqrt(n); i++){
+                if(n % i == 0){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+    //#endregion - practice
 }

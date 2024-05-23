@@ -68,6 +68,7 @@ public class Fatigue {
         };
         System.out.println(solution1(k, dungeons));
         System.out.println(solution2(k, dungeons));
+        System.out.println(solution4(k, dungeons));
     }
 
     private static int answer = -1;
@@ -116,4 +117,26 @@ public class Fatigue {
         backtracking.accept(k);
         return answer.get();
     }
+
+    //#region - practice
+    private static int count = 0;
+    public static int solution4(int k, int[][] dungeons) {
+        boolean[] visited = new boolean[dungeons.length];
+        dfs4(dungeons, visited, 0, k);
+        return count;
+    }
+    private static void dfs4(int[][] dungeons, boolean[] visited, int depth, int k){
+        for(int i = 0; i < dungeons.length; i++){
+            int required = dungeons[i][0];
+            int consume = dungeons[i][1];
+
+            if(!visited[i] && k >= required){
+                visited[i] = true;
+                dfs4(dungeons, visited, depth + 1, k - consume);
+                visited[i] = false;
+            }
+        }
+        count = Math.max(count, depth);
+    }
+    //#endregion - practice
 }

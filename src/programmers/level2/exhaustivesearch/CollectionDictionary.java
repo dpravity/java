@@ -2,7 +2,6 @@ package programmers.level2.exhaustivesearch;
 
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * https://school.programmers.co.kr/learn/courses/30/lessons/84512
@@ -39,10 +38,9 @@ import java.util.List;
 public class CollectionDictionary {
     public static void main(String[] args) {
         String word = "AAAAE";
-//        System.out.println(solution1(word));
-//        System.out.println(solution2(word));
-        System.out.println(3905);
-        System.out.println(Math.pow(5, 5));
+        System.out.println(solution1(word));
+        System.out.println(solution2(word));
+        System.out.println(solution4(word));
     }
     public static int solution1(String word) {
         String[] dictionary = {"A", "E", "I", "O", "U"};
@@ -62,10 +60,10 @@ public class CollectionDictionary {
 
     // dictionary 전체 조합 및 인덱스 생성
     private static void dfs(String[] dictionary, String str, int len, ArrayList<String> list) {
-        list.add(str);
-        if (len == 5){
+        if (len > 5){
             return;
         }
+        list.add(str);
         for (int i = 0; i < dictionary.length; i++) {
             dfs(dictionary, str + dictionary[i], len + 1, list);
         }
@@ -95,4 +93,31 @@ public class CollectionDictionary {
         dfs3("", 0, list);
         return list.indexOf(word);
     }
+
+    //#region - practice
+    public static int solution4(String word) {
+        int answer = 0;
+        String[] dictionary = {"A", "E", "I", "O", "U"};
+        ArrayList<String> dicList = new ArrayList<>();
+        dfs4(dictionary, "", 0, dicList);
+        for(int i = 0; i < dicList.size(); i++){
+            if(dicList.get(i).equals(word)){
+                answer = i;
+                break;
+            }
+        }
+        return answer;
+    }
+
+    private static void dfs4(String[] dictionary, String str, int length, ArrayList<String> dicList){
+        if(length > dictionary.length){
+            return;
+        }
+        dicList.add(str);
+
+        for(int i = 0; i < dictionary.length; i++){
+            dfs(dictionary, str + dictionary[i], length + 1, dicList);
+        }
+    }
+    //#endregion - practice
 }

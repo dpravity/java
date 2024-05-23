@@ -40,11 +40,12 @@ import java.util.stream.Collectors;
  */
 public class GymSuit {
     public static void main(String[] args) {
-        int n = 3;
-        int[] lost = {3};
-        int[] reserve = {1};
+        int n = 5;
+        int[] lost = {2, 4};
+        int[] reserve = {1, 3, 5};
         System.out.println(solution1(n, lost, reserve));
         System.out.println(solution2(n, lost, reserve));
+        System.out.println(solution3(n, lost, reserve));
     }
 
     public static int solution1(int n, int[] lost, int[] reserve) {
@@ -115,5 +116,36 @@ public class GymSuit {
         }
         return answer;
     }
+
+    //#region - practice
+    public static int solution3(int n, int[] lost, int[] reserve) {
+        int count = n;
+        int[] people = new int[n];
+        // 잃어버린 사람
+        for(int i : lost){
+            people[i - 1]--;
+        }
+        // 여분 있는 사람
+        for(int i : reserve){
+            people[i - 1]++;
+        }
+
+        for(int i = 0; i < people.length; i++){
+            if(people[i] == -1){
+                if(i - 1 >= 0 && people[i - 1] == 1){   // 앞사람 체크
+                    people[i]++;
+                    people[i - 1]--;
+                } else if (i + 1 < people.length && people[i + 1] == 1) {  // 뒷사람 체크
+                    people[i]++;
+                    people[i + 1]--;
+                }else{  // 못빌린 사람 제외
+                    count--;
+                }
+            }
+        }
+
+        return count;
+    }
+    //#endregion - practice
 
 }

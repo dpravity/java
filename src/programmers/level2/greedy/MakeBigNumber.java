@@ -26,7 +26,8 @@ public class MakeBigNumber {
         String number = "1231234";
         int k = 3;
 //        System.out.println(solution1(number, k));
-        System.out.println(solution2(number, k));
+//        System.out.println(solution2(number, k));
+        System.out.println(solution3(number, k));
     }
     public static String solution1(String number, int k) {
         char[] chars = number.toCharArray();
@@ -65,5 +66,27 @@ public class MakeBigNumber {
         }
         return new String(result);
     }
+
+    //#region - practice
+    public static String solution3(String number, int k) {
+        char[] chars = number.toCharArray();
+        int length = number.length() - k;
+        int start = 0;
+        StringBuilder sb = new StringBuilder();
+
+        for(int i = 0; i < length; i++){
+            char max = '0';
+            for(int j = start; j <= i + k; j++){
+                if(chars[j] > max){
+                    max = chars[j];
+                    start = j + 1;
+                }
+            }
+            sb.append(max);
+        }
+
+        return sb.toString();
+    }
+    //#endregion - practice
 
 }

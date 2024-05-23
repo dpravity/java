@@ -32,11 +32,8 @@ package programmers.level2.greedy;
 public class Joystick {
     public static void main(String[] args) {
         String name = "JAN";
-//        System.out.println((byte)'A');
-//        System.out.println((byte)'A' - 'A');
-//        System.out.println((byte)'Z' - 'A' + 1);
-//        System.out.println((byte)'Z' - 'A' + 1);
         System.out.println(solution1(name));
+        System.out.println(solution2(name));
     }
 
     /**
@@ -48,6 +45,7 @@ public class Joystick {
      *        즉, ZYXYZB순으로 움직인 경우
      *        (i * 2) + (name.length() - 연속된 A가 끝나는 지점)
      *        여기서 i는 현재 내 위치, 즉 'X'의 index이다.
+     *
      * [2]  index : 0에서 왼쪽으로 움직였다 다시 0으로 온 후, 오른쪽으로 움직인 경우
      *        즉, ZBZYX순으로 움직인 경우
      *       (name.length() - 연속된 A가 끝나는 지점) * 2 + i
@@ -82,5 +80,41 @@ public class Joystick {
 
         return answer + move;
     }
+
+    //#region - practice
+    public static int solution2(String name) {
+        int answer = 0;
+        int length = name.length();
+        int move = length - 1;
+
+        for(int i = 0, index = 0; i < length; i++){
+            // 순회마다 변경 카운트 추가
+            answer += Math.min(name.charAt(i) - 'A', 'Z' - name.charAt(i) + 1);
+
+            // 연속되는 A 이동거리 탐색
+            index = i + 1;
+            while(index < length && name.charAt(i) == 'A'){
+                index++;
+            }
+
+            // 이동 최소거리 계산
+            /*
+            앞으로 쭉가는 경우는 처음 초기화로 하드코딩합니다.
+            move = length - 1
+            그것보다 작은 경우를 찾는 알고리즘이 move = Math.min(move, i + length - index + Math.min(i, length - index)); 입니다.
+            i + length - index 는 '바로 옆의 A들을 제외한 다른 문자들의 길이 -1' 입니다.
+            예를 들면 AAABBBBBBBAA 는 i = 2일 경우 index = 10, length 는 12 이어서 4 가 됩니다.
+            즉, B를 건너지 않고 반대로 넘어가는 경우를 고려하는 것입니다.
+            여기서 문제는 우리의 시작점은 인덱스 0인것에 있습니다.
+            우리는 i까지 갔다가 되돌아가거나 처음부터 뒤로가서 length - index 까지 갔다가 다시 돌아오는 경우를 생각해야합니다.
+            앞의 예에서는 i = 2 두칸앞으로 갔다가 돌아오느냐, 처음부터 뒤로가서 length - index = 12 - 10 = 2를 고려해야하는 것입니다.
+            이 경우에는 두개가 같은 값이지만 다를 수 있어서 Math.min 으로 방향을 선택해주는 것입니다.
+             */
+             move = Math.min(move, i + length - index + Math.min(i, length - index));
+        }
+
+        return answer + move;
+    }
+    //#endregion - practice
 
 }

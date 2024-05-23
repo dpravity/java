@@ -46,10 +46,11 @@ public class SplittingThePowerGridInTwo {
         int n = 9; // result 3
         int[][] wires = {{1,3},{2,3},{3,4},{4,5},{4,6},{4,7},{7,8},{7,9}};
         System.out.println(solution1(n, wires));
+        System.out.println(solution2(n, wires));
     }
     public static int solution1(int n, int[][] wires) {
         int answer = n;
-        // 0 부터 9 까지 사이즈 n + 1
+        // 0 부터 n 까지 사이즈이므로 edges 사이즈는  n + 1
         int[][] edges = new int[n + 1][n + 1];
         for(int i = 0; i < wires.length; i++){
             int from = wires[i][0];
@@ -58,7 +59,7 @@ public class SplittingThePowerGridInTwo {
             edges[to][from] = 1;
         }
 
-        for(int i=0; i<wires.length; i++){
+        for(int i = 0; i < wires.length; i++){
             int from = wires[i][0];
             int to = wires[i][1];
             // from - to 연결 끊기
@@ -92,7 +93,74 @@ public class SplittingThePowerGridInTwo {
                 }
             }
         }
-        return (int) Math.abs(count - (n - count));
+        // 송전탑 개수 차이 A - B 절대값으로 리턴
+        // 끊긴쪽 탐색 카운트 - (전체 - 끊긴 만큼)
+        return Math.abs(count - (n - count));
     }
 
+    //#region - practice
+    public static int solution2(int n, int[][] wires) {
+        int answer = n; // 전체 송전탑 개수
+        // 탐색을 위한 간선 생성, 0 부터 n 까지 생성이므로 + 1
+        int[][] edges = new int[n + 1][n + 1];
+        for(int i = 0; i < wires.length; i++){
+            // 간선 양방향 연결
+            int from = wires[i][0];
+            int to = wires[i][1];
+            // 연결 상태 1, 끊김 상태 0 으로 세팅
+            edges[from][to] = 1;
+            edges[to][from] = 1;
+        }
+
+        // 간선 끊고 탐색
+        for(int i = 0; i < wires.length; i++){
+            // 간선 탐색을 위한 from, to
+            int from = wires[i][0];
+            int to = wires[i][1];
+            // 간선 연결 끊기
+            edges[from][to] = 0;
+            edges[to][from] = 0;
+            // 간선 끊긴 상태로 연결된 노드 탐색, 필요정보 간선, 시작 노드위치, 전체 개수
+            // 최소값 갱신
+            answer = Math.min(answer, bfs2(edges, from, n));
+            // 재탐색을 위한 간선 재연결
+            edges[from][to] = 1;
+            edges[to][from] = 1;
+        }
+
+        return answer;
+    }
+    private static int bfs2(int[][] edges, int from, int n){
+        // 방문여부 간선이 0부터 n까지 이므로 n + 1
+        boolean[] visited = new boolean[n + 1];
+        // 연결 노드를 확인할 큐
+        Queue<Integer> queue = new LinkedList<>();
+        queue.offer(from);
+        // from 노드를 카운트 하고 시작
+        int count = 1;
+        // 노드 방문 하였으니 방문여부 true
+        visited[from] = true;
+
+        // from 과 연결된 노드 전체 탐색
+        while(!queue.isEmpty()){
+            // 탐색할 시작 지점
+            int fromEdge = queue.poll();
+            for(int i = 1; i <= n; i++){
+                // 방문 노드 체크 && from - i 연결노드 체크
+                if(!visited[i] && edges[fromEdge][i] == 1){
+                    // 연결된 노드가 있다면 방문 체크
+                    visited[i] = true;
+                    // 다음 노드 탐색을 위해 큐에 노드 추가
+                    queue.offer(i);
+                    // 연결된 노드 카운트 추가
+                    count++;
+                }
+            }
+        }
+        // 노드를 끊고 탐색한 차이 절대값으로 리턴
+        // from 에 연결된 노드 카운트 - (전체 - 카운트)
+        // 끊긴 노드 수 - (남은 노드 수)
+        return Math.abs(count - (n - count));
+    }
+    //#endregion - practice
 }

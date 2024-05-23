@@ -30,6 +30,7 @@ public class Carpet {
         int brown = 10;
         int yellow = 2;
         System.out.println(Arrays.toString(solution1(brown, yellow)));
+        System.out.println(Arrays.toString(solution4(brown, yellow)));
     }
     public static int[] solution1(int brown, int yellow) {
         int[] answer = new int[2];
@@ -39,7 +40,6 @@ public class Carpet {
             if(sum % width == 0){
                 int vertical = sum / width;
 //                int center = width * vertical - (width + vertical - 2) * 2;
-//                if(center == yellow){
                 // 노란색 박스는 가로 위아래 한줄씩 -2 * 세로 위아래 한줄씩 -2
                 int yellowBox = (width - 2) * (vertical - 2);
                 if(yellowBox == yellow){
@@ -75,13 +75,35 @@ public class Carpet {
      * 루트를 이용하여 그 정사각형의 한 변의 길이를 구해주는데 그 한 변의 길이가 완성된 카펫의 가로와 세로의 길이 차이가 됩니다.
      * 그러므로 더 긴쪽, 즉 가로를 구하기 위해선 가로와 새로를 더한 값에 차이를 더해주고 2로 나누고, 짧은 쪽을 구하기 위해선 빼고 2로 나눠주면 됩니다
      * @param brown
-     * @param red
+     * @param yellow
      * @return
      */
-    public static int[] solution3(int brown, int red) {
+    public static int[] solution3(int brown, int yellow) {
         int a = (brown + 4) / 2;
-        int b = red + 2 * a - 4;
+        int b = yellow + 2 * a - 4;
         int[] answer = {(int)(a + Math.sqrt(a * a - 4 * b)) / 2, (int)(a - Math.sqrt(a * a - 4 * b)) / 2};
         return answer;
     }
+
+    //#region - practice
+    public static int[] solution4(int brown, int yellow) {
+        // 가로, 세로 크기 계산
+        int[] answer = new int[2];
+        int sum = brown + yellow;
+
+        for(int w = 3; w <= sum; w++){
+            if(sum % w == 0){
+                int h = sum / w;
+                int yellowBox = (w - 2) * (h - 2);
+                if(yellowBox == yellow){
+                    answer[0] = h;
+                    answer[1] = w;
+                    return answer;
+                }
+            }
+        }
+        return answer;
+    }
+    //#endregion - practice
+
 }

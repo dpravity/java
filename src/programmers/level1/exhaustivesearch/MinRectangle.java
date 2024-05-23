@@ -50,23 +50,41 @@ public class MinRectangle {
         int[][] sizes = {{60, 50}, {30, 70}, {60, 30}, {80, 40}};
         System.out.println(solution1(sizes));
         System.out.println(solution2(sizes));
+        System.out.println(solution3(sizes));
     }
     public static int solution1(int[][] sizes) {
-        int maxV = 0;
+        int maxW = 0;
         int maxH = 0;
         for(int i = 0; i < sizes.length ; i++){
             // 가로, 세로 중 최대값
-            int v = Math.max(sizes[i][0], sizes[i][1]);
+            int w = Math.max(sizes[i][0], sizes[i][1]);
             // 가로, 세로 중 최소값
             int h = Math.min(sizes[i][0], sizes[i][1]);
-            maxV = Math.max(maxV, v);
+            maxW = Math.max(maxW, w);
             maxH = Math.max(maxH, h);
         }
-        return maxV * maxH;
+        return maxW * maxH;
     }
     public static int solution2(int[][] sizes) {
         return Arrays.stream(sizes).reduce((a, b) -> new int[]{
                 Math.max(Math.max(a[0], a[1]), Math.max(b[0], b[1])), Math.max(Math.min(a[0], a[1]), Math.min(b[0], b[1]))
         }).map(it -> it[0] * it[1]).get();
     }
+
+    //#region - practice
+    public static int solution3(int[][] sizes) {
+        int maxW = 0;
+        int maxH = 0;
+
+        for(int i = 0; i < sizes.length; i++){
+            int max = Math.max(sizes[i][0], sizes[i][1]);
+            int min = Math.min(sizes[i][0], sizes[i][1]);
+            maxW = Math.max(maxW, max);
+            maxH = Math.max(maxH, min);
+        }
+
+        return maxW * maxH;
+    }
+    //#endregion - practice
+
 }
